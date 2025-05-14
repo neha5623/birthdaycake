@@ -14,6 +14,10 @@
 
 
   <script>
+    window.onload = function () {
+  // Runs AFTER entire page (HTML, CSS, images, scripts, fonts, etc.) is fully loaded
+
+
     const canvas = document.getElementById("cake");
     const ctx = canvas.getContext("2d");
     let alreadyBlown = false;
@@ -163,6 +167,7 @@
 
       checkBlow();
     });
+    };
   </script>
 </body>
 </html>
