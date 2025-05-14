@@ -1,0 +1,32 @@
+@font-face {
+    font-family: "apricot"; 
+    src: url("apricot.woff") format("woff"); 
+    font-weight: normal; 
+    font-style: normal; 
+  }
+html{
+    margin: 0;
+    padding: 0;
+}
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background:linear-gradient(to bottom ,#000420,#000428,#202552, #3b0754);
+    
+}
+
+h1{
+    color: white;
+    font:bolder;
+    font-family: "apricot";
+    font-size: 170%;
+}
+#message{
+    color: white;
+    font:bolder;
+    font-family: "apricot";
+    font-size: 150%;
+}

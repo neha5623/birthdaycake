@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>heppy</title>
+    <link rel="icon" href="favicon-32x32.png" type="image/png" />
+    <style>
+        @font-face {
+    font-family: "apricot"; 
+    src: url("apricot.woff") format("woff"); 
+    font-weight: normal; 
+    font-style: normal; 
+  }
+html{
+    margin: 0;
+    padding: 0;
+}
+        body{
+            background-color: black;
+            display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+        }
+         #escpgif{
+            
+    display: flex;
+    align-items: center;
+    
+   
+    overflow: hidden;
+    flex-direction: column;
+  
+}
+
+h1{
+    color: white;
+    font:bolder;
+    font-family: "apricot";
+    font-size: 170%;
+   
+}
+#choice-box {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+#choice-box button {
+  background-color: white;
+  color: black;
+  font-family: "apricot"; /* make sure you load this font if it's custom */
+  border: 2px solid black;
+  border-radius: 12px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 30px;
+}
+
+    </style>
+</head>
+<body>
+    <h1>Happy Birthday Aadiye!😌🎉
+    </h1>
+    <div id="escpgif"><img style="height:75%;" src="dens.gif">
+        <h1>Is Mr.Adil available tmrw? </h1>
+        <div id="choice-box">
+  <button onclick="handleChoice('yes')">Yes</button>
+  <button onclick="handleChoice('no')">No</button>
+</div>
+
+    </div>
+    
+<script>
+    function handleChoice(answer) {
+  if (answer === 'yes') {
+    window.location.href = "thnku.html"; 
+  } else {
+    window.location.href = "escp.html";  
+  }
+}
+
+</script>
+</body>
+</html>
