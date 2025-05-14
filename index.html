@@ -156,7 +156,7 @@
         if (max > threshold && !alreadyBlown) {
           alreadyBlown = true;
           drawCake(false); // Hide flames
-          document.querySelector("h1").innerText = "More gifts on the way! 🫣";
+          document.querySelector("h1").textContent = "More gifts on the way! 🫣";
           setTimeout(() => {
             window.location.href = "heppy.html"; // Replace with your target page
             }, 3000);
