@@ -136,7 +136,8 @@
 
     drawCake();
     animateFlame();
-
+    document.getElementById("startBtn").addEventListener("click", () => {
+    document.getElementById("startBtn").style.opacity = 0;
     navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
       const audioContext = new AudioContext();
 
@@ -167,7 +168,7 @@
 
       checkBlow();
     });
-    };
+    });
   </script>
 </body>
 </html>
