@@ -10,165 +10,164 @@
 <body>
   <h1> Blow the candle! </h1>
   <canvas id="cake" width="400" height="400"></canvas>
-  <div id="message" style="display: none;" >More gifts on the way! 🫣</div>
+  <div id="message" style="display: none;">More gifts on the way! 🫣</div>
   <button id="startBtn">Start Blowing!</button>
 
   <script>
     window.onload = function () {
-  // Runs AFTER entire page (HTML, CSS, images, scripts, fonts, etc.) is fully loaded
+      const canvas = document.getElementById("cake");
+      const ctx = canvas.getContext("2d");
+      let alreadyBlown = false;
+      const threshold = 200;
+      const orange = 140 + Math.random() * 50;
 
+      function drawCake(flames = true) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    const canvas = document.getElementById("cake");
-    const ctx = canvas.getContext("2d");
-    let alreadyBlown = false;
-    const threshold =200;
-    const orange = 140 + Math.random() * 50;
+        // Base plate
+        ctx.beginPath();
+        ctx.ellipse(200, 290, 110, 20, 0, 0, Math.PI * 2);
+        ctx.fillStyle = "grey";
+        ctx.fill();
 
-    function drawCake(flames = true) {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      // Base plate
-      ctx.beginPath();
-      ctx.ellipse(200, 290, 110, 20, 0, 0, Math.PI * 2);
-      ctx.fillStyle = "grey";
-      ctx.fill();
-
-      ctx.beginPath();
-      ctx.ellipse(200, 290, 100, 15, 0, 0, Math.PI * 2);
-      ctx.fillStyle = "white";
-      ctx.fill();
-
-      // Cake body
-      ctx.beginPath();
-      ctx.moveTo(125, 180);
-      ctx.lineTo(125, 290);
-      ctx.lineTo(275, 290);
-      ctx.lineTo(275, 180);
-      ctx.fillStyle = "#ff69b4";
-      ctx.fill();
-
-      ctx.beginPath();
-      ctx.ellipse(200, 290, 75, 10, 0, 0, Math.PI * 2);
-      ctx.fillStyle = "#ff69b4";
-      ctx.fill();
-
-      // Frosting layer 1
-      ctx.beginPath();
-      ctx.moveTo(125, 180);
-      ctx.quadraticCurveTo(110, 210, 150, 200);
-      ctx.quadraticCurveTo(175, 210, 200, 200);
-      ctx.quadraticCurveTo(225, 210, 250, 200);
-      ctx.quadraticCurveTo(270, 210, 280, 200);
-      ctx.lineTo(275, 180);
-      ctx.closePath();
-      ctx.fillStyle = "#f4c2c2";
-      ctx.fill();
-
-      ctx.beginPath();
-      ctx.ellipse(200, 180, 75, 10, 0, 0, Math.PI * 2);
-      ctx.fillStyle = "#ff69b4";
-      ctx.fill();
-
-      // Frosting layer 2
-      ctx.beginPath();
-      ctx.moveTo(125, 230);
-      ctx.quadraticCurveTo(110, 260, 150, 250);
-      ctx.quadraticCurveTo(175, 260, 200, 250);
-      ctx.quadraticCurveTo(225, 260, 250, 250);
-      ctx.quadraticCurveTo(270, 260, 280, 250);
-      ctx.lineTo(275, 230);
-      ctx.closePath();
-      ctx.fillStyle = "#f4c2c2";
-      ctx.fill();
-
-      ctx.beginPath();
-      ctx.ellipse(200, 230, 75, 10, 0, 0, Math.PI * 2);
-      ctx.fillStyle = "#ff69b4";
-      ctx.fill();
-
-      // Candles
-      for (let i = 0; i < 3; i++) {
-        const x = 165 + i * 30;
+        ctx.beginPath();
+        ctx.ellipse(200, 290, 100, 15, 0, 0, Math.PI * 2);
         ctx.fillStyle = "white";
-        ctx.fillRect(x, 130, 10, 50);
-        ctx.fillRect(x+4, 125, 2, 20);
-        ctx.strokeStyle = "purple";
+        ctx.fill();
+
+        // Cake body
         ctx.beginPath();
-        ctx.moveTo(x + 3, 130);
-        ctx.lineTo(x + 3, 180);
-        ctx.stroke();
+        ctx.moveTo(125, 180);
+        ctx.lineTo(125, 290);
+        ctx.lineTo(275, 290);
+        ctx.lineTo(275, 180);
+        ctx.fillStyle = "#ff69b4";
+        ctx.fill();
 
         ctx.beginPath();
-        ctx.moveTo(x + 7, 130);
-        ctx.lineTo(x + 7, 180);
-        ctx.stroke();
+        ctx.ellipse(200, 290, 75, 10, 0, 0, Math.PI * 2);
+        ctx.fillStyle = "#ff69b4";
+        ctx.fill();
+
+        // Frosting layers
+        ctx.beginPath();
+        ctx.moveTo(125, 180);
+        ctx.quadraticCurveTo(110, 210, 150, 200);
+        ctx.quadraticCurveTo(175, 210, 200, 200);
+        ctx.quadraticCurveTo(225, 210, 250, 200);
+        ctx.quadraticCurveTo(270, 210, 280, 200);
+        ctx.lineTo(275, 180);
+        ctx.closePath();
+        ctx.fillStyle = "#f4c2c2";
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.ellipse(200, 180, 75, 10, 0, 0, Math.PI * 2);
+        ctx.fillStyle = "#ff69b4";
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.moveTo(125, 230);
+        ctx.quadraticCurveTo(110, 260, 150, 250);
+        ctx.quadraticCurveTo(175, 260, 200, 250);
+        ctx.quadraticCurveTo(225, 260, 250, 250);
+        ctx.quadraticCurveTo(270, 260, 280, 250);
+        ctx.lineTo(275, 230);
+        ctx.closePath();
+        ctx.fillStyle = "#f4c2c2";
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.ellipse(200, 230, 75, 10, 0, 0, Math.PI * 2);
+        ctx.fillStyle = "#ff69b4";
+        ctx.fill();
+
+        // Candles
+        for (let i = 0; i < 3; i++) {
+          const x = 165 + i * 30;
+          ctx.fillStyle = "white";
+          ctx.fillRect(x, 130, 10, 50);
+          ctx.fillRect(x + 4, 125, 2, 20);
+          ctx.strokeStyle = "purple";
+          ctx.beginPath();
+          ctx.moveTo(x + 3, 130);
+          ctx.lineTo(x + 3, 180);
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.moveTo(x + 7, 130);
+          ctx.lineTo(x + 7, 180);
+          ctx.stroke();
+        }
+
+        // Draw flames
+        if (flames) {
+          for (let i = 0; i < 3; i++) {
+            const x = 170 + i * 30;
+            drawFlame(x, 118);
+          }
+        }
       }
 
-      // Draw flames
-      if (flames) {
+      function drawFlame(x, y) {
+        const radius = 6 + Math.random() * 2;
+        const offsetX = (Math.random() - 0.5) * 2;
+        const offsetY = (Math.random() - 0.5) * 2;
+        ctx.beginPath();
+        ctx.ellipse(x + offsetX, y + offsetY, radius, radius * 1.5, 0, 0, Math.PI * 2);
+        ctx.fillStyle = `rgb(255, ${orange}, 0)`;
+        ctx.fill();
+      }
+
+      function animateFlame() {
+        if (alreadyBlown) return;
+        ctx.clearRect(160, 100, 100, 30); // Clear flame area
         for (let i = 0; i < 3; i++) {
           const x = 170 + i * 30;
           drawFlame(x, 118);
         }
+        requestAnimationFrame(animateFlame);
       }
-    }
 
-    function drawFlame(x, y) {
-      const radius = 6 + Math.random() * 2;
-      const offsetX = (Math.random() - 0.5) * 2;
-      const offsetY = (Math.random() - 0.5) * 2;
+      drawCake();
+      animateFlame();
 
-      ctx.beginPath();
-      ctx.ellipse(x + offsetX, y + offsetY, radius, radius * 1.5, 0, 0, Math.PI * 2);
-      ctx.fillStyle = `rgb(255, ${orange}, 0)`;
-      ctx.fill();
-    }
+      document.getElementById("startBtn").addEventListener("click", async () => {
+        document.getElementById("startBtn").style.opacity = 0;
 
-    function animateFlame() {
-      if (alreadyBlown) return;
-      ctx.clearRect(160, 100, 100, 30); // Clear flame area
-      for (let i = 0; i < 3; i++) {
-        const x = 170 + i * 30;
-        drawFlame(x, 118);
-      }
-      requestAnimationFrame(animateFlame);
-    }
+        try {
+          const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+          const audioContext = new AudioContext();
+          await audioContext.resume(); // ✅ Ensure resumed before use
 
-    drawCake();
-    animateFlame();
-    document.getElementById("startBtn").addEventListener("click", () => {
-    document.getElementById("startBtn").style.opacity = 0;
-    navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
-      const audioContext = new AudioContext();
+          const analyser = audioContext.createAnalyser();
+          analyser.fftSize = 256; // ✅ REQUIRED before using `getByteTimeDomainData`
+          const micSource = audioContext.createMediaStreamSource(stream);
+          micSource.connect(analyser);
 
-      // In some browsers, audioContext is suspended until user interacts
-      audioContext.resume();
+          const data = new Uint8Array(analyser.fftSize);
 
-      const analyser = audioContext.createAnalyser();
-      const micSource = audioContext.createMediaStreamSource(stream);
-      micSource.connect(analyser);
+          function checkBlow() {
+            analyser.getByteTimeDomainData(data);
+            let max = Math.max(...data);
+            if (max > threshold && !alreadyBlown) {
+              alreadyBlown = true;
+              drawCake(false); // Hide flames
+              document.querySelector("h1").textContent = "More gifts on the way! 🫣";
+              setTimeout(() => {
+                window.location.href = "heppy.html"; // Replace with your target page
+              }, 3000);
+            } else {
+              requestAnimationFrame(checkBlow);
+            }
+          }
 
-      const data = new Uint8Array(analyser.fftSize);
-
-      function checkBlow() {
-        analyser.getByteTimeDomainData(data);
-        let max = Math.max(...data);
-
-        if (max > threshold && !alreadyBlown) {
-          alreadyBlown = true;
-          drawCake(false); // Hide flames
-          document.querySelector("h1").textContent = "More gifts on the way! 🫣";
-          setTimeout(() => {
-            window.location.href = "heppy.html"; // Replace with your target page
-            }, 3000);
-        } else {
-          requestAnimationFrame(checkBlow);
+          checkBlow();
+        } catch (err) {
+          console.error("Microphone access denied or error:", err);
+          alert("Microphone access is needed to blow out the candle!");
         }
-      }
-
-      checkBlow();
-    });
-    });
+      });
+    };
   </script>
 </body>
 </html>
