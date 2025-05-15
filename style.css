@@ -17,6 +17,16 @@ body{
     background:linear-gradient(to bottom ,#000420,#000428,#202552, #3b0754);
     
 }
+button {
+  background-color: white;
+  color: black;
+  font-family: "apricot"; /* make sure you load this font if it's custom */
+  border: 2px solid black;
+  border-radius: 12px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 20px;
+}
 
 h1{
     color: white;
